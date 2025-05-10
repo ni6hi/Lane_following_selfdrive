@@ -1,0 +1,23 @@
+#!/bin/bash
+#launching the launch file? :\
+echo 'WELCOME TO LANE DETECTION LAUNCHER (LDL)'
+echo 'contours log available in contour.log'
+echo 'ipm log available in ipm.log'
+echo 'image drawer log available in image_drawer.log'
+echo 'processing log available in proc.log'
+rm lanes.log;
+rm ipm.log;
+rm image_drawer.log;
+rm proc.log;
+touch lanes.log;
+touch ipm.log;
+touch image_drawer.log;
+touch proc.log;
+
+#launches lane contours
+gnome-terminal --tab --title "lane contours" -- bash -c "echo 'RUNNING: contours' ; ros2 run lane_detection contours> contour.log ; exec bash" &
+gnome-terminal --tab --title "ipm" -- bash -c "echo 'RUNNING: IPM' ; ros2 run multicamera ipm ; exec bash"  &
+gnome-terminal --tab --title "image drawer" -- bash -c "echo 'RUNNING: IMAGE DRAWER' ; ros2 run lane_detection image_drawer > image_drawer.log ; exec bash" &
+gnome-terminal --tab --title "lane processing" -- bash -c "echo 'RUNNING: LANE PROCESSING' ; ros2 run lane_detection lane_logic; exec bash"
+
+# python3 log_parser.py;

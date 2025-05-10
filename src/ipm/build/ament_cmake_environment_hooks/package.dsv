@@ -1,0 +1,4 @@
+source;share/multicamera/local_setup.bash
+source;share/multicamera/local_setup.dsv
+source;share/multicamera/local_setup.sh
+source;share/multicamera/local_setup.zsh
